@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle Financeiro</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Biblioteca para os Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dashboard Financeiro</h1>
+
+      <div class="summary-cards">
+        <div class="card receita">
+          <h3>Receitas</h3>
+          <p id="total-receita">R$ 0,00</p>
+        </div>
+        <div class="card despesa">
+          <h3>Despesas</h3>
+          <p id="total-despesa">R$ 0,00</p>
+        </div>
+        <div class="card saldo">
+          <h3>Saldo</h3>
+          <p id="saldo-final">R$ 0,00</p>
+        </div>
+      </div>
+
+      <div class="charts-container">
+        <canvas id="myChart"></canvas>
+      </div>
+
+      <table id="finance-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Categoria</th>
+            <th>Tipo</th>
+            <th>Valor (R$)</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- Linhas iniciais -->
+          <tr>
+            <td><input type="text" value="Salário" readonly /></td>
+            <td><input type="text" value="Fixo" readonly /></td>
+            <td>
+              <select disabled>
+                <option value="receita">Receita</option>
+              </select>
+            </td>
+            <td>
+              <input
+                type="number"
+                class="val-input"
+                value="1500"
+                onchange="updateAll()"
+              />
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="btn-add" onclick="addRow()">+ Adicionar Lançamento</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

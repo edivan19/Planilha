@@ -1,0 +1,91 @@
+:root {
+  --primary: #2f5597;
+  --success: #2ecc71;
+  --danger: #e74c3c;
+  --bg: #f8f9fa;
+  --text: #2d3436;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+}
+
+.card.receita {
+  background: var(--success);
+}
+.card.despesa {
+  background: var(--danger);
+}
+.card.saldo {
+  background: var(--primary);
+}
+
+.charts-container {
+  height: 300px;
+  margin-bottom: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid var(--primary);
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+input,
+select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.btn-add {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-add:hover {
+  filter: brightness(1.1);
+}
