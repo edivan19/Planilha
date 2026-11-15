@@ -1,71 +1,135 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Controle Financeiro</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Biblioteca para os Gráficos -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Dashboard Financeiro</h1>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1>Controle Financeiro</h1>
+          <p>Gerencie suas receitas e despesas.</p>
+        </div>
+      </header>
 
-      <div class="summary-cards">
-        <div class="card receita">
+      <section class="summary-cards">
+        <article class="card receita">
           <h3>Receitas</h3>
           <p id="total-receita">R$ 0,00</p>
-        </div>
-        <div class="card despesa">
+        </article>
+
+        <article class="card despesa">
           <h3>Despesas</h3>
           <p id="total-despesa">R$ 0,00</p>
-        </div>
-        <div class="card saldo">
-          <h3>Saldo</h3>
+        </article>
+
+        <article class="card saldo">
+          <h3>Saldo disponível</h3>
           <p id="saldo-final">R$ 0,00</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="section-header">
+          <h2>Novo lançamento</h2>
         </div>
-      </div>
 
-      <div class="charts-container">
-        <canvas id="myChart"></canvas>
-      </div>
+        <form id="finance-form">
+          <input type="hidden" id="edit-id" />
 
-      <table id="finance-table">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Categoria</th>
-            <th>Tipo</th>
-            <th>Valor (R$)</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        <tbody id="table-body">
-          <!-- Linhas iniciais -->
-          <tr>
-            <td><input type="text" value="Salário" readonly /></td>
-            <td><input type="text" value="Fixo" readonly /></td>
-            <td>
-              <select disabled>
+          <div class="form-grid">
+            <div class="field">
+              <label for="item">Descrição</label>
+              <input type="text" id="item" placeholder="Ex: Salário" required />
+            </div>
+
+            <div class="field">
+              <label for="categoria">Categoria</label>
+              <input
+                type="text"
+                id="categoria"
+                placeholder="Ex: Alimentação"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="tipo">Tipo</label>
+              <select id="tipo" required>
                 <option value="receita">Receita</option>
+                <option value="despesa">Despesa</option>
               </select>
-            </td>
-            <td>
+            </div>
+
+            <div class="field">
+              <label for="valor">Valor (R$)</label>
               <input
                 type="number"
-                class="val-input"
-                value="1500"
-                onchange="updateAll()"
+                id="valor"
+                min="0.01"
+                step="0.01"
+                placeholder="0,00"
+                required
               />
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
 
-      <button class="btn-add" onclick="addRow()">+ Adicionar Lançamento</button>
-    </div>
+            <div class="field">
+              <label for="data">Data</label>
+              <input type="date" id="data" required />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-add" id="btn-salvar">
+              Adicionar lançamento
+            </button>
+            <button type="button" class="btn-cancel" id="btn-cancelar" hidden>
+              Cancelar edição
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="section-header">
+          <h2>Resumo financeiro</h2>
+          <input type="month" id="filtro-mes" />
+        </div>
+
+        <div class="charts-container">
+          <canvas id="myChart"></canvas>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-header">
+          <h2>Histórico de lançamentos</h2>
+          <button type="button" class="btn-clear" id="btn-limpar">
+            Limpar todos
+          </button>
+        </div>
+
+        <div class="table-container">
+          <table id="finance-table">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
 
     <script src="script.js"></script>
   </body>
